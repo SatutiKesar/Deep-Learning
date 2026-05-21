@@ -6,10 +6,10 @@ PyTorch tracks all operations performed on tensors with **requires_grad=True** a
 Why Autograd is Important
 
 Autograd enables neural networks to learn by:
-i) Computing gradients automatically
-ii) Reducing manual derivative calculations
-iii) Supporting backpropagation
-iv) Optimizing model parameters efficiently
+1. Computing gradients automatically
+2. Reducing manual derivative calculations
+3. Supporting backpropagation
+4. Optimizing model parameters efficiently
 
 
 Training Process includes:
