@@ -17,3 +17,4 @@ Training Process includes:
 2.	Calculate loss - Calculate the loss function to quantify the error.
 3.	Backward pass - Compute gradients of the loss with respect to the parameters.
 4.	Update gradients - Adjust the parameters using an optimization algorithm (e.g., gradient descent).
+<img width="776" height="508" alt="autograd" src="https://github.com/user-attachments/assets/6abbd1d8-dc50-4284-8ed3-d7491ae28ea5" />
