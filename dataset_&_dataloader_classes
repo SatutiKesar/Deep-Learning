@@ -1,0 +1,53 @@
+Dataset and Dataloader are core abstractions in PyTorch that decouple how you define your data from how you efficiently iterate over it in training loops.
+
+Dataset Class
+The Dataset class is essentially a blueprint. When you create a custom Dataset, you decide how data is loaded and returned.
+It defines:
+__init__() - which tells how data should be loaded.
+__len__() - which returns the total number of samples.
+__getitem__(index) - which returns the data (and lable) at the given index.
+
+
+DataLoader Class
+The DataLoader wraps a Dataset and handles batching, shuffling, and parallel loading for you.
+
+DataLoader Control Flow:
+At the start of each epoch, the DataLoader(if shuffle=True) shuffles indices(using a sampler).
+It divides the indices into chunks of batch_size.
+For each index in the chunk, data samples are fetched from the Dataset object.
+The samples are then collected and combined into a batch(using a collate_fn).
+The batch is returned to the main training loop(pipeline).
+
+
+
+Sampler
+In PyTorch, the sampler in the DataLoader determines the strategy for selecting samples from the dataset during data loading. It controls how indices of the dataset are drawn for each batch.
+
+
+Types of Sampler
+PyTorch provides several predefined samples, and you can create custom ones:
+SequentialSampler- Samples elements sequentially, in the order they appear in the dataset. Default when shuffle=False.
+RandomSampler- Samples elements randomly without replacement. Default when shuffle=True
+
+
+
+collate_fn()
+The collate_fn in PyTorch's DataLoader is a function that specifies how to combine a list of samples form a dataset into a single batch. By default, the DataLoader uses a simple batch collation mechanism, but collate_fn allows you to customize how the data should be processed and batched.
+
+
+
+DataLoader Important Parameters
+ *`dataset` → dataset object to load data from
+ *`batch\\\\\\\_size` → number of samples per batch
+ *`shuffle` → randomly shuffle data every epoch
+ *`num\\\\\\\_workers` → number of subprocesses used for loading data
+ *`drop\\\\\\\_last` → drops the last incomplete batch
+ *`pin\\\\\\\_memory` → speeds up CPU-to-GPU data transfer
+ *`sampler` → custom strategy for selecting samples
+ *`collate\\\\\\\_fn` → custom function for creating batches
+ `persistent\\\\\\\_workers` → keeps worker processes alive between epochs
+ `timeout` → maximum wait time for worker processes
+ `worker\\\\\\\_init\\\\\\\_fn` → function to initialize each worker process
+ `generator` → controls randomness for reproducibility
+ `prefetch\\\\\\\_factor` → number of batches loaded in advance by each worker
+ `batch\\\\\\\_sampler` → returns batches of indices directly instead of single indices
